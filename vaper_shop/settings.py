@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'clients',
     'shop',
     'crispy_forms',
 ]
@@ -48,7 +49,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-AUTH_USER_MODEL = 'shop.Client'
+AUTH_USER_MODEL = 'clients.Client'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
