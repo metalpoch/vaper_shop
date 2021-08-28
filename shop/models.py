@@ -8,7 +8,7 @@ class Product(models.Model):
     price = models.FloatField()
     stock = models.PositiveIntegerField()
     # file will be uploaded to MEDIA_ROOT/uploads
-    image = models.ImageField(upload_to='img/vaper/')
+    image = models.ImageField(upload_to='static/img/vaper/')
 
     def __str__(self):
         return f'ID {self.id}: {self.model} - {self.name}, stock: {self.stock}'
@@ -22,7 +22,8 @@ class Client(AbstractUser):
             ('M', 'Male'),
         ],
     )
-    birthday_date = models.DateField(null=True)
+    email = models.EmailField(unique=True)
+    birth_date = models.DateField(null=True)
     address = models.TextField()
     credits = models.FloatField(default=0)
 

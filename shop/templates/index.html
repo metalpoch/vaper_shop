@@ -1,58 +1,32 @@
-{% extends 'base.html' %} {% block content %}
-{% load static %}
-<div class="row">
-  <div class="col">
-    <div class="card" style="width: 15rem">
-      <img src="{% static 'img/vaper1.webp' %}" class="card-img-top" alt="..." />
+{% extends 'base.html' %} {% block content %} {% load static %}
+<div class="row row-cols-md-5 row-cols-2">
+  {% for product in products %}
+  <div class="col mb-4">
+    <div
+      class="card border-danger rounded"
+      style="height: 100%; min-width: 132px"
+    >
+      <img
+        src="{{ product.image.url }}"
+        class="card-img-top mx-auto"
+        alt="{{ product.name | lower }} - image"
+      />
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+        <h6 class="card-title text-center">{{ product.name }}</h6>
+        <p class="card-text text-center mb-0 pb-0">
+          <small>{{ product.model }}</small>
         </p>
-        <a href="#" class="btn btn-secondary">Comprar</a>
+        <p class="card-text text-center text-success mb-0 pb-0">
+          <small> ${{ product.price }} </small>
+        </p>
+        <div class="card-footer text-center">
+          <div class="d-grid gap-2 ">
+            <a href="#" class="btn btn-info">Buy</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col">
-    <div class="card" style="width: 15rem">
-      <img src="{% static 'img/vaper2.webp' %}" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 15rem">
-      <img src="{% static 'img/vaper3.webp' %}" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card" style="width: 15rem">
-      <img src="{% static 'img/vaper4.webp' %}" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
+  {% endfor %}
 </div>
-
 {% endblock %}

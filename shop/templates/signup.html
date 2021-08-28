@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-sm-auto pb-3">
+    <div class="card border-info rounded">
+      <div class="cart-header text-center">
+        <h1 class="text-light pt-3">Register</h1>
+      </div>
+      <form method="POST">
+        <div class="card-body text-light">
+          {% csrf_token %}
+          {{ form | crispy }}
+        </div>
+        <div class="card-footer text-light">
+          <div class="d-grid gap-2">
+            <input
+              type="submit"
+              class="btn btn-success"
+              value="Send Credentials"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-3"></div>
+  </div>
+</div>
+{% endblock %}

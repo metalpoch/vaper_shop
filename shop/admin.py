@@ -10,11 +10,10 @@ class PreviewClient(admin.ModelAdmin):
         'last_name',
         'email',
         'gender',
-        'birthday_date',
+        'birth_date',
         'address',
         'credits',
     ]
-    list_filter = ['credits', 'username']
 
 
 admin.site.register(Client, PreviewClient)
