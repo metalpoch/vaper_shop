@@ -1,3 +1,9 @@
+# File of migratios
+shop/migrations/*
+
+# config vim
+.vim/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
