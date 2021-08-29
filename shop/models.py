@@ -4,7 +4,7 @@ from clients.models import Client
 
 class Product(models.Model):
     name = models.CharField(max_length=20)
-    model = models.CharField(max_length=20)
+    provider = models.CharField(max_length=20)
     description = models.TextField()
     price = models.FloatField()
     stock = models.PositiveIntegerField()
@@ -12,7 +12,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to='static/img/vaper/')
 
     def __str__(self):
-        return f'ID {self.id}: {self.model} - {self.name}, stock: {self.stock}'
+        return f'ID {self.id}: {self.provider} - {self.name}, \
+            stock: {self.stock}'
 
 
 class SalesRecord(models.Model):
