@@ -5,9 +5,10 @@ from clients.models import Client
 class Product(models.Model):
     name = models.CharField(max_length=20)
     model = models.CharField(max_length=20)
+    description = models.TextField()
     price = models.FloatField()
     stock = models.PositiveIntegerField()
-    # file will be uploaded to MEDIA_ROOT/uploads
+    # file will be uploaded to MEDIA_ROOT/static
     image = models.ImageField(upload_to='static/img/vaper/')
 
     def __str__(self):
