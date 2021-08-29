@@ -20,8 +20,12 @@
           <small> ${{ product.price }} </small>
         </p>
         <div class="card-footer text-center">
-          <div class="d-grid gap-2 ">
-            <a href="#" class="btn btn-info">Buy</a>
+          <div class="d-grid gap-2">
+            <a
+              onclick="purchase_validate('{{ user.credits }}', '{{product.price}}')"
+              class="btn btn-info"
+              >Buy</a
+            >
           </div>
         </div>
       </div>
@@ -29,4 +33,6 @@
   </div>
   {% endfor %}
 </div>
+{% endblock %} {% block js_scripts %} {% load static %}
+<script src="{% static 'js/credits.js' %}"></script>
 {% endblock %}

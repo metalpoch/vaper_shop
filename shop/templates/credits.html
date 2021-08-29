@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container text-center">
+  <p class="h1">
+    {{ num1 }} {{ oper }} {{ num2 }} = <span class="text-danger">?</span>
+  </p>
+
+  <div class="row">
+    {% for value in values %}
+    <div class="col-4 col-lg-4 mb-1">
+      <div class="d-grid gap-2">
+        <a
+          class="btn btn-lg btn-primary"
+          onclick="creditsResult(
+		   '{{ user.id }}',
+		   '{{ value }}',
+		   '{{ result }}'
+	  )"
+        >
+          {{ value }}</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %} {% block js_scripts %} {% load static %}
+<script src="{% static 'js/credits.js' %}"></script>
+{% endblock %}

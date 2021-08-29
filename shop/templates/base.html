@@ -45,13 +45,23 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Trends</a>
             </li>
-
             {% if user.is_authenticated %}
-            <li class="nav-item">
-	      <a class="nav-link" href="{% url 'home' %}">{{ user.first_name }} {{ user.last_name }}</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >{{ user.username | title }}</a
+              >
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+		<a class="dropdown-item" href="{% url 'credits' %}">Buy Credits</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+              </div>
             </li>
             {% else %}
             <li class="nav-item">
@@ -86,6 +96,6 @@
         {% endif %}
       })
     </script>
-    {% endif %}
+    {% endif %} {% block js_scripts %} {% endblock %}
   </body>
 </html>

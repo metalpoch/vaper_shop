@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 
 from clients.forms import ClientRegisterForm
 from clients.validations import birth_date_valid
@@ -36,3 +36,8 @@ def sign_up(request):
         context['form'] = data_form
 
     return render(request, 'signup.html', context)
+
+
+@login_required(login_url='login/')
+def profile(request):
+    return render(request, 'profile.html')
