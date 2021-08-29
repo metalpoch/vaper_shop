@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
+from clients.models import Client
 from clients.forms import ClientRegisterForm
-from clients.validations import birth_date_valid
+from clients.validations import birth_date_valid, basic_math
 
 
 def sign_up(request):
@@ -36,6 +37,32 @@ def sign_up(request):
         context['form'] = data_form
 
     return render(request, 'signup.html', context)
+
+
+@login_required(login_url='login/')
+def credits(request):
+    num1, num2, oper, result = basic_math()
+    values = [basic_math()[-1] for x in range(5)]
+
+    values.append(result)
+    values.sort()
+
+    context = {
+        'num1': num1,
+        'num2': num2,
+        'oper': oper,
+        'result': result,
+        'values': values
+    }
+    return render(request, 'credits.html', context)
+
+
+@login_required(login_url='login/')
+def add_credits(request, id, credits):
+    client = get_object_or_404(Client, pk=id)
+    client.credits += credits
+    client.save()
+    return redirect('credits')
 
 
 @login_required(login_url='login/')

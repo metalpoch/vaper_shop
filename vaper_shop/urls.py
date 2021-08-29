@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from clients.views import sign_up, profile
-from shop.views import index, credits, add_credits
+from clients.views import sign_up, profile, credits, add_credits
+from shop.views import index
 
 
 urlpatterns = [
