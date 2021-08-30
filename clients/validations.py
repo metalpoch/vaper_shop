@@ -24,3 +24,10 @@ def basic_math():
         oper = '*'
         result = num1 * num2
     return num1, num2, oper, result
+
+
+def no_have_credits(credits, product_price, amount):
+    '''
+    This function validate if the client have credits
+    '''
+    return True if credits < (product_price * amount) else False

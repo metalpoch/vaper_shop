@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% load static %}
+{% block content %}
+<div class="container">
+  <h1>{{ product.name }}</h1>
+  <span class="text-success">
+    <h3>{{ product.provider }}</h3>
+  </span>
+</div>
+<div class="row">
+  <div class="col-md-5 mb-4">
+    <div class="card border-dark rounded">
+      <img
+        src="{{ product.image.url }}"
+        alt="{{ product.name | lower }} - image"
+        style="width: 200px"
+        class="mx-auto"
+      />
+      <div class="card-footer text-center">
+        <div class="row mx-5">
+          <div class="col">
+            <p>
+              Price: <span class="text-success">${{ product.price }}</span>
+            </p>
+          </div>
+          <div class="col">
+            {% if product.stock == 0 %}
+            <p>
+              Stock: <span class="text-danger">{{ product.stock }}</span>
+            </p>
+            {% else %}
+            <p>Stock: {{ product.stock }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 my-auto">
+    <h6 class="ms-3 text-white">Description:</h6>
+    <p class="ms-5 me-3 text-light">{{ product.description }}</p>
+    <hr />
+    <div class="card border-dark mb-3 mx-5">
+      <form method="POST">
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col">
+            {% csrf_token %}
+            {{ form | crispy }}
+          </div>
+          <div class="col">
+            <br />
+            <div class="d-grid gap-2 mb-2">
+              <input class="btn btn-success" type="submit" value="Buy" />
+            </div>
+          </div>
+          <div class="col-1"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block js_scripts %}
+<script src="{% static 'js/credits.js' %}"></script>
+{% if message == 'notCreditsEnough' %}
+<script>notCreditsEnough("{% url 'credits' %}")</script>
+{% elif message == 'stockEmpty' %}
+<script>stockEmpty()</script>
+{% elif message == 'noUserLogin' %}
+<script>noUserLogin("{% url 'login' %}")</script>
+{% elif message == 'productNoEnough' %}
+<script>productNoEnough("{{ num }}")</script>
+{% elif message == 'quantityError' %}
+<script>quantityError()</script>
+{% endif %}
+{% endblock %}

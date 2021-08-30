@@ -81,21 +81,6 @@
     <div class="container mt-4">{% block content %} {% endblock %}</div>
 
     {% if message %}
-    <script>
-      Swal.fire({
-        icon: '{{ message.icon }}',
-        title: '{{ message.title }}',
-        text: '{{ message.text }}',
-        backdrop: 'rgba(0,0,0,0.85)',
-        timer: {{ message.timer }},
-        {% if message.show_sign_in %}
-        footer: '<a href="" class="text-secondary">Sign In, it\'s free!</a>',
-        {% endif %}
-        {% if not message.show_confirm_button %}
-        showConfirmButton: false,
-        {% endif %}
-      })
-    </script>
     {% endif %} {% block js_scripts %} {% endblock %}
   </body>
 </html>

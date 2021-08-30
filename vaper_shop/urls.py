@@ -17,15 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 
 from clients.views import sign_up, profile, credits, add_credits
-from shop.views import index
+from shop.views import index, product_detail
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='home'),
-    path('', include('django.contrib.auth.urls')),  # Sign IN
+    path('', include('django.contrib.auth.urls'), name='login'),  # Sign IN
     path('signup/', sign_up, name='signup'),  # Sign UP
     path('profile/', profile, name='profile'),
     path('credits/', credits, name='credits'),
     path('credits/<int:id>/<int:credits>', add_credits, name='add_credits'),
+    path('<str:fake>=<int:id>/', product_detail, name='detail'),
 ]

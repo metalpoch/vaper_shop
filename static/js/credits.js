@@ -1,14 +1,3 @@
-const purchase_validate = (credits, price) => {
-  if ((credits === "") | (credits === "None")) {
-    noUserLogin();
-  } else if (parseFloat(credits) < parseFloat(price)) {
-    notCreditsEnough();
-  } else if (parseFloat(credits) > parseFloat(price)) {
-    console.log("Comprar");
-    // Redirect to 'cart' route
-  }
-};
-
 const creditsResult = (id, value, result) => {
   if (value === result) {
     result = Math.abs(result);
@@ -25,7 +14,7 @@ const addCreditsFail = () => {
     icon: "error",
     title: "Incorrect",
     text: "Come back later",
-    backdrop: "rgba(0,0,0,0.85)",
+    backdrop: "rgba(0,0,0,0.95)",
     timer: 2000,
     showConfirmButton: false,
   });
@@ -36,32 +25,65 @@ const addCreditsSuccess = (result) => {
     icon: "success",
     title: "You are Rock!",
     text: `You get $${result}!`,
-    backdrop: "rgba(0,0,0,0.85)",
+    backdrop: "rgba(0,0,0,0.95)",
     timer: 2000,
     showConfirmButton: false,
   });
 };
 
-const noUserLogin = () => {
+const noUserLogin = (url) => {
   Swal.fire({
     icon: "warning",
     title: "Oops...",
     text: "To continue you must login",
-    backdrop: "rgba(0,0,0,0.85)",
+    backdrop: "rgba(0,0,0,0.95)",
     timer: 4000,
-    footer: '<a href="login/" class="text-secondary">Sign In</a>',
+    footer: `<a href="${url}" class="text-secondary">Sign In</a>`,
     showConfirmButton: false,
   });
 };
 
-const notCreditsEnough = () => {
+const notCreditsEnough = (url) => {
   Swal.fire({
     icon: "error",
     title: "Oh no!",
-    text: "You no have money",
-    backdrop: "rgba(0,0,0,0.85)",
+    text: "Insufficient credits",
+    backdrop: "rgba(0,0,0,0.95)",
     timer: 4000,
-    footer: '<a href="credits/" class="text-secondary">Buy credits</a>',
+    footer: `<a href="${url}" class="text-secondary">Buy credits</a>`,
+    showConfirmButton: false,
+  });
+};
+
+const stockEmpty = () => {
+  Swal.fire({
+    icon: "warning",
+    title: "Oh no!",
+    text: "The stock is empty",
+    backdrop: "rgba(0,0,0,0.95)",
+    timer: 4000,
+    showConfirmButton: false,
+  });
+};
+
+const productNoEnough = (num) => {
+  Swal.fire({
+    icon: "info",
+    title: "Wait!",
+    text: `Only left ${num} vape in the stock`,
+    backdrop: "rgba(0,0,0,0.95)",
+    timer: 4000,
+    showConfirmButton: false,
+  });
+};
+
+const quantityError = () => {
+  Swal.fire({
+    icon: "question",
+    title: "What?",
+    text: "Please, buy me a vape",
+    backdrop: "rgba(0,0,0,0.95)",
+    timer: 4000,
     showConfirmButton: false,
   });
 };
