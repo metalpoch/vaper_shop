@@ -3,7 +3,13 @@
   {% for product in products %}
   <div class="col mb-4">
     <div
-      class="card border-danger rounded"
+      {% if product.stock < 1 %}
+      class="card border-dark rounded"
+      {% elif product.stock < 100 %}
+      class="card border-info rounded"
+      {% else %}
+      class="card border-light rounded"
+      {% endif %}
       style="height: 100%; min-width: 132px"
     >
       <img
@@ -21,12 +27,9 @@
         </p>
         <div class="card-footer text-center">
           <div class="d-grid gap-2">
-	    <a
-	      class="btn btn-info"
-	      href="{{ product.name }}={{ product.id }}"
-	      >
-	      Detail
-	    </a>
+            <a class="btn btn-info" href="{{ product.name }}={{ product.id }}">
+              Detail
+            </a>
           </div>
         </div>
       </div>
