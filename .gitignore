@@ -1,3 +1,6 @@
+# Git personal access token
+git_token.txt
+
 # File of migratios
 shop/migrations/*
 
