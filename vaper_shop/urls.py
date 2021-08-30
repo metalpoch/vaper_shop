@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from clients.views import sign_up, profile, credits, add_credits
-from shop.views import index, product_detail
+from shop.views import index, product_detail, about
 
 
 urlpatterns = [
@@ -25,6 +25,7 @@ urlpatterns = [
     path('', index, name='home'),
     path('', include('django.contrib.auth.urls'), name='login'),  # Sign IN
     path('signup/', sign_up, name='signup'),  # Sign UP
+    path('about/', about, name='about'),
     path('profile/', profile, name='profile'),
     path('credits/', credits, name='credits'),
     path('credits/<int:id>/<int:credits>', add_credits, name='add_credits'),

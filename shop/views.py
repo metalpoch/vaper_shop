@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
-# from django.http import HttpResponse
+from django.http import FileResponse, Http404
 
 from shop.models import Product
 from shop.forms import PurchaseProductForm
@@ -13,6 +13,16 @@ from clients.validations import no_have_credits
 def index(request):
     context = {'products': Product.objects.all()}
     return render(request, 'index.html', context)
+
+
+def about(request):
+    try:
+        return FileResponse(
+            open('static/documents/KeiberUrbila-CV.pdf', 'rb'),
+            content_type='application/pdf'
+        )
+    except FileNotFoundError:
+        raise Http404
 
 
 def product_detail(request, fake, id):
