@@ -26,8 +26,8 @@ def basic_math():
     return num1, num2, oper, result
 
 
-def no_have_credits(credits, product_price, amount):
+def no_have_credits(credits, product_price, quantity):
     '''
     This function validate if the client have credits
     '''
-    return True if credits < (product_price * amount) else False
+    return True if credits < (product_price * quantity) else False

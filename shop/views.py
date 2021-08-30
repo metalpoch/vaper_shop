@@ -37,13 +37,13 @@ def product_detail(request, fake, id):
             not_credits_enough = no_have_credits(
                 credits=client.credits,
                 product_price=product.price,
-                amount=data_form.cleaned_data['amount']
+                quantity=data_form.cleaned_data['quantity']
             )
 
             # validate if the stock have product
             empty_stock, can_buy, not_stock_enough = remaining_products(
                 product_stock=product.stock,
-                quantity=data_form.cleaned_data['amount']
+                quantity=data_form.cleaned_data['quantity']
             )
 
             if not_credits_enough:
@@ -55,7 +55,7 @@ def product_detail(request, fake, id):
                 context['message'] = 'productNoEnough'
                 context['num'] = product.stock
 
-            elif data_form.cleaned_data['amount'] == 0:
+            elif data_form.cleaned_data['quantity'] == 0:
                 context['form'] = data_form
                 context['message'] = 'quantityError'
 
@@ -65,8 +65,8 @@ def product_detail(request, fake, id):
                 data_form = data_form.save(commit=False)
                 data_form.client = client
                 data_form.product = product
-                product.stock -= data_form.amount
-                client.credits -= product.price * data_form.amount
+                product.stock -= data_form.quantity
+                client.credits -= product.price * data_form.quantity
                 product.save()
                 client.save()
                 data_form.save()

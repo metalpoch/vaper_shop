@@ -19,9 +19,9 @@ class Product(models.Model):
 class SalesRecord(models.Model):
     client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-    amount = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField()
     purchase_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.purchase_date} {self.client} bought {self.amount} \
-            {self.product}'
+        return f'ID {self.id}: {self.purchase_date}, {self.client} bought \
+            {self.quantity} {self.product}'

@@ -3,8 +3,8 @@ from shop.models import SalesRecord
 
 
 class PurchaseProductForm(forms.ModelForm):
-    amount = forms.NumberInput()
+    quantity = forms.NumberInput()
 
     class Meta:
         model = SalesRecord
-        fields = ("amount",)
+        fields = ("quantity",)
