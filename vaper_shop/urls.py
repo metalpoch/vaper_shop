@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 from clients.views import sign_up, profile, credits, add_credits
-from shop.views import index, product_detail, about
+from shop.views import index, product_detail, about, trends
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='home'),
     path('', include('django.contrib.auth.urls'), name='login'),  # Sign IN
+    path('trends/', trends, name='trends'),
     path('signup/', sign_up, name='signup'),  # Sign UP
     path('about/', about, name='about'),
     path('profile/', profile, name='profile'),

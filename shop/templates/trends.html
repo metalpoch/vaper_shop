@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="mt-3">Trends</h1>
+
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    {% for top in top5 %}
+    {% for product in products %}
+    {% if top.product == product.id %}
+    <div class="card border-success mb-3">
+      <div class="row">
+        <div class="col-6">
+	  <img
+	    src="{{ product.image.url }}"
+	    class="card-img-top mx-auto"
+	    alt="{{ product.name | lower }} - image"
+	    />
+	</div>
+        <div class="col-6">
+	  <div class="card-header">
+	      <h4>{{ product.provider }}</h4>
+	      <h5>{{ product.name }}</h5>
+	  </div>
+	  <div class="card-body">
+	    <h5 class="card-title text-info">Sold: {{ top.sell }}</h5>
+	    <h5 class="card-title text-info">Price: ${{ product.price }}</h5>
+	  </div>
+	  <div class="card-footer text-center">
+        <div class="card-footer text-center">
+          <div class="d-grid gap-2">
+            <a
+	      class="btn btn-info"
+	      href="/{{ product.name }}={{ product.id }}">
+	      Detail
+            </a>
+          </div>
+        </div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+  </div>
+  <div class="col-3"></div>
+</div>
+
+{% endblock %}

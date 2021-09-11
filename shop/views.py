@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
 from django.http import FileResponse, Http404
+from django.db.models import Sum
 
-from shop.models import Product
+from shop.models import Product, SalesRecord
 from shop.forms import PurchaseProductForm
 from shop.validations import remaining_products
 
@@ -89,3 +90,19 @@ def product_detail(request, fake, id):
             return render(request, 'details.html', context)
 
     return render(request, 'details.html', context)
+
+
+def trends(request):
+    top5 = SalesRecord.objects.values('product').order_by('product').annotate(
+        sell=Sum('quantity')
+    ).order_by('sell').reverse()[:5]
+
+    product_list = [x['product'] for x in list(top5)]
+
+    products = Product.objects.filter(pk__in=product_list)
+
+    context = {
+        'products': products,
+        'top5': top5
+    }
+    return render(request, 'trends.html', context)
