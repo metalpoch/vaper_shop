@@ -39,10 +39,10 @@ python manage.py runserver
 python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
-python manage.py createsuperuser  # create a superuser
+python manage.py createsuperuser
 ```
 
-Articles need to be added manually from the Django admin site
+The products need to be added manually from the Django admin site
 ![image](https://github.com/metalpoch/vaper_shop/blob/main/static/img/addProduct.png?raw=true)
 
 ## Licence
