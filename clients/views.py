@@ -6,6 +6,8 @@ from clients.models import Client
 from clients.forms import ClientRegisterForm
 from clients.validations import birth_date_valid, basic_math
 
+from shop.models import SalesRecord
+
 
 def sign_up(request):
     context = {
@@ -67,4 +69,12 @@ def add_credits(request, id, credits):
 
 @login_required(login_url='login/')
 def profile(request):
-    return render(request, 'profile.html')
+    context = {
+        'products': SalesRecord.objects.filter(client=request.user.id)
+    }
+    return render(request, 'profile.html', context)
+
+# client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
+# product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+# quantity = models.PositiveIntegerField()
+# purchase_date = models.DateTimeField(auto_now=True)

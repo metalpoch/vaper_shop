@@ -1,5 +1,36 @@
 {% extends 'base.html' %} {% block content %}
 <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-<p>Credits: ${{ user.credits }} <span><a href="{% url 'credits' %}" class="">+</a></span> </p>
 
+<h4 class="text-light">Credits: 
+  <span class="text-success">${{ user.credits }}</span>
+  <a class="text-light" href="{% url 'credits' %}">+</a>
+</h4>
+
+<h4 class="mt-5">Purchase History</h4>
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">N°</th>
+      <th scope="col">Product</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Puchase Date</th>
+    </tr>
+  </thead>
+  {% for product in products %}
+  <tbody>
+    <th scope="row">{{ product.id }}</th>
+      <td>
+	<a 
+	  class"nav-link"
+	  href="/{{ product.product.name }}={{ product.product.id }}"
+	  >
+	  {{ product.product.provider }}-{{ product.product.name }}
+	</a>
+      </td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.purchase_date }}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
 {% endblock %}
