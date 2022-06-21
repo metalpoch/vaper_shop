@@ -6,7 +6,7 @@ Register and buy your favorite vape in this virtual store simulator
 
 ## Installation
 
-##### Clone this repository [GitHub](https://github.com/metalpoch/Traffic-Access-Dashboard#)
+##### Clone this repository [GitHub](https://github.com/metalpoch/vaper_shop.git)
 ```bash
 git clone https://github.com/metalpoch/vaper_shop.git
 cd vaper_shop/
